@@ -39,6 +39,11 @@ class RefoundsController {
 
         response.status(201).json(refund)
     }
+
+    async index(request: Request, response: Response){
+
+        response.status(200).json({message: "vendo todos"})
+    }
 }
 
 export {RefoundsController}

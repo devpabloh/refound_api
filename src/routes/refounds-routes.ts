@@ -9,5 +9,6 @@ const refoundsRoutes = Router()
 const refoundsController = new RefoundsController()
 
 refoundsRoutes.post("/", verifyUserAuthorization(["employee"]), refoundsController.create)
+refoundsRoutes.get("/",verifyUserAuthorization(["manager"]), refoundsController.index)
 
 export { refoundsRoutes }
