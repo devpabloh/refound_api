@@ -85,6 +85,23 @@ class RefoundsController {
 
         response.status(200).json({refunds, pagination: {page, perPage, totalRecords, totalPages: totalPages > 0 ? totalPages: 1}})
     }
+
+    async show(request: Request, response:Response){
+
+        const paramsSchema = z.object({
+            id: z.string().uuid(),
+
+        })
+
+        const {id} = paramsSchema.parse(request.params)
+
+        const refund = await prisma.refunds.findFirst({
+            where:{id},
+            include: {user: true} // para inserir os dados do usuário
+        })
+
+        response.json({refund})
+    }
 }
 
 export {RefoundsController}
